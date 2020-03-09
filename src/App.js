@@ -12,17 +12,18 @@ export default function App() {
     usoCfdi: ""
   });
 
+  console.log("receptor", receptor);
   return (
     <>
       <div className="m-sm-5">
         <ReceptorInfo
           receptor={[receptor, setReceptor]}
-          rfcError={<BotClientValidator receptor={[receptor, setReceptor]} />}
+          // rfcError={<BotClientValidator receptor={[receptor, setReceptor]} />}
         />
       </div>
-      <div className="m-2">
+      {/* <div className="m-2">
         <Input />
-      </div>
+      </div> */}
     </>
   );
 }

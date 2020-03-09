@@ -3,14 +3,13 @@ import React, { useEffect, useState } from "react";
 import { ContainerArray } from "./lib/kuhnidev";
 
 export default props => {
-  console.log("receptor del bot alidado", props);
+  // console.log("receptor del bot alidado", props);
   const { receptor, status } = props;
 
   return (
     <ContainerArray datas={[receptor, status]}>
       {([receptor, setReceptor], [status, setStatus]) => {
         const ClientNameError = props => {
-          console.log("Props", props);
           const { rfc } = props;
           const [error, setError] = useState("");
           useEffect(() => {

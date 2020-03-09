@@ -32,7 +32,8 @@ export default props => {
             <Input
               text={receptor.rfc}
               setText={setReceptor.rfc}
-              textColor="danger"
+              fontFamily="Arial Narrow, sans-serif"
+              textColor="info"
             />
 
             <div>{rfcError || null}</div>
@@ -48,9 +49,10 @@ export default props => {
             />
 
             <Input
+              fontFamily="Arial Narrow, sans-serif"
               text={receptor.razon}
               setText={setReceptor.razon}
-              textColor="success"
+              textColor="info"
             />
             <div>{razonError || null}</div>
           </div>
@@ -65,7 +67,22 @@ export default props => {
               iconRequiered={!receptor.usoCfdi}
             />
 
-            <SelectOption textColor="danger" />
+            <SelectOption
+              value={receptor.usoCfdi}
+              textColor="info"
+              fontFamily="Arial Narrow, sans-serif"
+              opciones={[
+                {
+                  value: "s/v",
+                  label: "No hay opciones configuradas.."
+                },
+                {
+                  value: "123",
+                  label: "Opcion 123"
+                }
+              ]}
+              setText={setReceptor.usoCfdi}
+            />
             <div>{usodeCfdiError || null}</div>
           </div>
         </div>
