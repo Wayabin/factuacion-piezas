@@ -8,7 +8,7 @@ export default props => {
   const { client, status, nameError, lastnameError, lastname2Error } = props;
 
   return (
-    <ContainerArray datas={[client, status]}>
+    <ContainerArray containers={[client, status]}>
       {([client, setClient], [status, setStatus]) => (
         <div>
           <h1>Datos del Cliente</h1>

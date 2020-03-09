@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export const RoundIcon = props => {
-  const { size, mode, icon, ...other } = props;
+  const { size, mode, icon, tooltip, ...other } = props;
 
   let sized = "22px";
 
@@ -26,6 +26,9 @@ export const RoundIcon = props => {
     >
       <span>
         <i
+          data-placement="top"
+          title={tooltip || ""}
+          data-toggle="tooltip"
           className={`fas fa-${icon || "cube"} fa-${size || "1x"}`}
           style={{
             color: `var(--${mode}`

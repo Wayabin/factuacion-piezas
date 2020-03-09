@@ -7,7 +7,7 @@ export default props => {
   const { receptor, status } = props;
 
   return (
-    <ContainerArray datas={[receptor, status]}>
+    <ContainerArray containers={[receptor, status]}>
       {([receptor, setReceptor], [status, setStatus]) => {
         const ClientNameError = props => {
           const { rfc } = props;

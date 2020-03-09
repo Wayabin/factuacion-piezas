@@ -53,7 +53,8 @@ export default props => {
         backgroundImage: "none",
         backgroundColor: "transparent",
         boxShadow: "none",
-        borderBottomColor: `var(--${textColor || "primary"}`
+        borderBottomColor: `var(--${textColor || "primary"}`,
+        fontWeight: 700
         // -webkit-box-shadow: none;
         // -moz-box-shadow: none;
         // box-shadow: none;

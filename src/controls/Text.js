@@ -10,8 +10,12 @@ export default props => {
     iconMode,
     iconSize,
     fontFamily,
-    iconRequiered
+    iconRequiered,
+    tooltip
   } = props;
+
+  //Estado que permite cambiar el  tamaño de icono
+  const [currentTooltip, setCurrenTooltip] = useState("");
 
   //Estado que permite cambiar el  tamaño de icono
   const [currentIconSize, setCurrentIconSize] = useState("");
@@ -41,6 +45,10 @@ export default props => {
     if (iconSize === undefined || iconSize === null) return;
     setCurrentIconSize(iconSize);
   }, [iconSize]);
+  useEffect(() => {
+    if (tooltip === undefined || tooltip === null) return;
+    setCurrenTooltip(tooltip);
+  }, [tooltip]);
 
   useEffect(() => {
     if (iconRequiered === undefined || iconRequiered === null) return;
@@ -84,7 +92,7 @@ export default props => {
           fontFamily: currentFontFamily,
           fontSize: currentFontSize
         }}
-        className={` d-flex text-${currentMode || "primary"}`}
+        className={` d-flex text-${currentMode || "primary"} mr-2`}
       >
         {currentText || "Sin texto"}
       </span>
@@ -94,6 +102,7 @@ export default props => {
             icon={currentIcon}
             mode={currentIconMode}
             size={currentIconSize}
+            tooltip={currentTooltip}
           />
         </i>
       )}
