@@ -5,28 +5,31 @@ import "./Input.css";
 import { useInputState } from "./lib/kuhnidev";
 
 export default props => {
-  console.log("Render Input");
   const {
     text,
     disabled,
     placeholder,
     setText,
     textColor,
+    lineBottomColor,
     fontFamily,
     fontSize
   } = props;
 
   const [currentText, setCurrentText] = useInputState(text, "");
 
-  if (text === undefined || text === null || text === "") {
+  if (currentText === undefined || currentText === null || currentText === "") {
     return (
       <input
         style={{
           color: `var(--${textColor || "primary"}`,
           fontFamily: fontFamily,
-          fontSize: fontSize
+          fontSize: fontSize,
+          boxShadow: "none",
+          backgroundColor: "transparent",
+          border: "none"
         }}
-        className="form-control mt-2"
+        className="form-control"
         value={currentText}
         disabled={disabled}
         placeholder={placeholder}
@@ -53,13 +56,13 @@ export default props => {
         backgroundImage: "none",
         backgroundColor: "transparent",
         boxShadow: "none",
-        borderBottomColor: `var(--${textColor || "primary"}`,
+        borderBottomColor: `var(--${lineBottomColor || "primary"}`,
         fontWeight: 700
         // -webkit-box-shadow: none;
         // -moz-box-shadow: none;
         // box-shadow: none;
       }}
-      className="form-control mt-2"
+      className="form-control "
       value={currentText}
       disabled={disabled}
       placeholder={placeholder}

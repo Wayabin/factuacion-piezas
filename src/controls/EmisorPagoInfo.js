@@ -2,7 +2,7 @@ import React from "react";
 import Input from "./Input";
 import Text from "./Text";
 import SelectOption from "./SelectOption";
-import { HiddenContainer } from "../HiddenContainer";
+import HiddenContainer from "./HiddenContainer";
 
 export default props => {
   const {

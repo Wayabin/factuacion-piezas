@@ -1,108 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { RoundIcon } from "./RoundIcon";
+import RoundIcon from "./RoundIcon";
 
 export default props => {
   const {
     text,
     mode,
-    fontSize,
     icon,
     iconMode,
     iconSize,
+    tooltip,
     fontFamily,
-    iconRequiered,
-    tooltip
+    fontSize,
+    iconRequiered
   } = props;
-
-  //Estado que permite cambiar el  tamaño de icono
-  const [currentTooltip, setCurrenTooltip] = useState("");
-
-  //Estado que permite cambiar el  tamaño de icono
-  const [currentIconSize, setCurrentIconSize] = useState("");
-
-  //Estado que permite cambiar si el icono es o no requerido
-  const [currentIconRequiered, setCurrentRequiered] = useState("");
-
-  //Estado que permite cambiar el color del icono
-  const [currentIconMode, setCurrentIconMode] = useState("");
-
-  //Estado que permite cambiar el icon
-  const [currentIcon, setCurrentIcon] = useState("");
-
-  //Estado que permite cambiar el color del texto basado en la plantilla de css boostrap
-  const [currentMode, setCurrentMode] = useState("");
-
-  //Estado que permite cambiar el tamaño del Texto
-  const [currentFontSize, setCurrentFontSize] = useState("16px");
-
-  // Estado que permite cambiar el texto de la entrada
-  const [currentText, setCurrentText] = useState("");
-
-  //Estado que permite cambiar el FontFamily del texto
-  const [currentFontFamily, setCurrentFontFamily] = useState("");
-
-  useEffect(() => {
-    if (iconSize === undefined || iconSize === null) return;
-    setCurrentIconSize(iconSize);
-  }, [iconSize]);
-  useEffect(() => {
-    if (tooltip === undefined || tooltip === null) return;
-    setCurrenTooltip(tooltip);
-  }, [tooltip]);
-
-  useEffect(() => {
-    if (iconRequiered === undefined || iconRequiered === null) return;
-    setCurrentRequiered(iconRequiered);
-  }, [iconRequiered]);
-
-  useEffect(() => {
-    if (fontFamily === undefined || fontFamily === null) return;
-    setCurrentFontFamily(fontFamily);
-  }, [fontFamily]);
-
-  useEffect(() => {
-    if (iconMode === undefined || iconMode === null) return;
-    setCurrentIconMode(iconMode);
-  }, [iconMode]);
-  useEffect(() => {
-    if (icon === undefined || icon === null) return;
-    setCurrentIcon(icon);
-  }, [icon]);
-
-  useEffect(() => {
-    if (fontSize === undefined || fontSize === null) return;
-    setCurrentFontSize(fontSize);
-  }, [fontSize]);
-
-  useEffect(() => {
-    if (mode === undefined || mode === null) return;
-    setCurrentMode(mode);
-  }, [mode]);
-
-  useEffect(() => {
-    if (text === undefined || text === null) return;
-    setCurrentText(text);
-  }, [text]);
 
   // Vista del control
   return (
     <span className="d-flex">
       <span
         style={{
-          fontFamily: currentFontFamily,
-          fontSize: currentFontSize
+          fontFamily: fontFamily,
+          fontSize: fontSize
         }}
-        className={` d-flex text-${currentMode || "primary"} mr-2`}
+        className={` d-flex text-${mode || "primary"} mr-2`}
       >
-        {currentText || "Sin texto"}
+        {text || "Sin texto"}
       </span>
-      {currentIconRequiered && (
+      {iconRequiered && (
         <i style={{ fontSize: "inherit" }}>
           <RoundIcon
-            icon={currentIcon}
-            mode={currentIconMode}
-            size={currentIconSize}
-            tooltip={currentTooltip}
+            icon={icon}
+            mode={iconMode}
+            size={iconSize}
+            tooltip={tooltip}
           />
         </i>
       )}

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-export const RoundIcon = props => {
+export default props => {
   const { size, mode, icon, tooltip, ...other } = props;
 
-  let sized = "22px";
+  let sized = size ? size : "22px";
 
   if (size === "1x") sized = "28px";
   else if (size === "2x") sized = "48px";
 
   return (
     <div
-      className={`mx-1 icon-${mode || "primary"}`}
+      className={` icon-${mode || "primary"}`}
       style={{
         display: "flex",
         justifyContent: "center",
@@ -29,10 +29,10 @@ export const RoundIcon = props => {
           data-placement="top"
           title={tooltip || ""}
           data-toggle="tooltip"
-          className={`fas fa-${icon || "cube"} fa-${size || "1x"}`}
-          style={{
-            color: `var(--${mode}`
-          }}
+          className={`fas fa-${icon || "cube"} fa-${sized || "1x"}`}
+          // style={{
+          //   color: `var(--${mode}`
+          // }}
         />
       </span>
     </div>

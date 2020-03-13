@@ -8,13 +8,17 @@
 
 import React, { useEffect, useState } from "react";
 
-export const version = "v2003.09.1428";
+export const version = "v2003.10.1717";
 
 export const useInputState = (input, defaultValue = null) => {
   const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {
-    if (input === void 0) return;
+    if (
+      input === void 0 ||
+      (typeof input === "object" && Object.keys(input).length === 0)
+    )
+      return;
     setValue(input);
   }, [input]);
 
@@ -24,62 +28,15 @@ export const useInputState = (input, defaultValue = null) => {
 export const Container = props => {
   const { children, container, setContainer } = props;
 
+  const handler = typeof children === "function" ? children : () => children;
+
   const [currentContainer, setCurrentContainer] = useInputState(container, {});
 
-  const handler = typeof children === "function" ? children : () => children;
+  useEffect(() => {
+    if (typeof setContainer === "function") setContainer(currentContainer);
+  }, [currentContainer]);
 
-  return handler(
-    currentContainer,
-    new Proxy(setCurrentContainer, {
-      get(target, key) {
-        return newValue => {
-          target({
-            ...currentContainer,
-            [key]: newValue
-          });
-          if (typeof setContainer === "function") {
-            setContainer({
-              ...container,
-              [key]: newValue
-            });
-          }
-        };
-      }
-    })
-  );
-};
-
-export const ContainerArray = props => {
-  const { children, containers } = props;
-
-  const [currentDatas] = useInputState(containers, []);
-
-  const handler = typeof children === "function" ? children : () => children;
-
-  const nextContainer = (computedContainers, containers = []) => {
-    if (containers.length === 0) {
-      if (computedContainers.length === 0) {
-        return null;
-      }
-      return handler(...computedContainers);
-    }
-    const [pair, ...nextDatas] = containers;
-
-    const [container, setContainer] = pair instanceof Array ? pair : [pair];
-
-    return (
-      <Container container={container} setContainer={setContainer}>
-        {(container, setContainer) =>
-          nextContainer(
-            [...computedContainers, [container, setContainer]],
-            nextDatas
-          )
-        }
-      </Container>
-    );
-  };
-
-  return nextContainer([], currentDatas);
+  return handler(currentContainer, setCurrentContainer);
 };
 
 export const UI = props => {
@@ -93,19 +50,59 @@ export const UI = props => {
   return handler(
     new Proxy(index || {}, {
       get(target, key) {
-        console.log("KEY", key);
-        return target[key] || (() => <code>invalid ui {key}</code>);
+        return (
+          target[key] ||
+          (props => (
+            <div>
+              <code>
+                <strong>&lt;{key}</strong>{" "}
+                {Object.entries(props)
+                  .map(([key, value]) => {
+                    if (React.isValidElement(value)) {
+                      return `children={ ${value.type} }`;
+                    }
+                    return `${key}={ ${
+                      typeof value === "function"
+                        ? value
+                            .toString()
+                            .split("{")[0]
+                            .trim()
+                        : JSON.stringify(value)
+                    } }`;
+                  })
+                  .join(" ")}{" "}
+                <strong>/&gt;</strong>
+              </code>
+            </div>
+          ))
+        );
       }
     })
   );
 };
 
-export const renderContainer = ([container, setContainer], handler) => (
-  <Container container={container} setContainer={setContainer}>
-    {handler}
-  </Container>
+export const ContainerArray = () => {
+  return (
+    <code>
+      <strong>ContainerArray</strong> has been deprecated
+    </code>
+  );
+};
+
+export const renderContainer = () => (
+  <code>
+    <strong>renderContainer</strong> has been deprecated
+  </code>
 );
 
-export const renderContainers = (containers, handler) => (
-  <Container containers={containers}>{handler}</Container>
+export const renderContainers = () => (
+  <code>
+    <strong>renderContainers</strong> has been deprecated
+  </code>
+);
+
+export const renderUI = () => (
+  <code>
+    <strong>renderUI</strong> has been deprecated
+  </code>
 );

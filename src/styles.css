@@ -11,3 +11,67 @@ hr {
   height: 0;
   overflow: visible;
 }
+.card-hover {
+  cursor: pointer;
+  user-select: none;
+}
+
+.card-hover:hover {
+  color: var(--white);
+  background-color: var(--primary);
+}
+
+.icon-primary {
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.icon-primary:hover {
+  color: var(--white);
+  background-color: var(--primary);
+}
+
+.icon-success {
+  cursor: pointer;
+  color: var(--success);
+}
+
+.icon-success:hover {
+  color: var(--white);
+  background-color: var(--success);
+}
+
+.icon-danger {
+  cursor: pointer;
+  color: var(--danger);
+}
+
+.icon-danger:hover {
+  color: var(--white);
+  background-color: var(--danger);
+}
+
+.icon-warning {
+  cursor: pointer;
+  color: var(--warning);
+}
+
+.icon-warning:hover {
+  color: var(--white);
+  background-color: var(--warning);
+}
+.icon-info {
+  cursor: pointer;
+  color: var(--info);
+}
+
+.icon-info:hover {
+  color: var(--white);
+  background-color: var(--info);
+}
+.myshadow {
+  box-shadow: 0 0 2px 0 rgba(13, 26, 44, 0.12),
+    0 1px 1px 0 rgba(13, 26, 44, 0.24);
+  border-radius: 4px;
+  /* background-color: #f5f5f5; */
+}
